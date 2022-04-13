@@ -9,6 +9,7 @@ import Content4 from './components/pages/Content4';
 import Content2 from './components/pages/Content2';
 import AppHeader from './components/Common/AppHeader';
 import Home from './components/pages/Home';
+import HomeTable from './components/Table/HomeTable';
 function App() {
   const { Header } = Layout;
   return (
@@ -18,6 +19,7 @@ function App() {
        <Home>
 
        </Home>
+      
     </Header>
   
   </Layout>
