@@ -4,6 +4,11 @@ import LoginForm from './LoginForm.css';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
+import { Layout,Table, Modal } from 'antd';
+import { Upload, message, Tooltip } from 'antd';
+import { UploadOutlined, CloudUploadOutlined, EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
+import { SearchOutlined, ReloadOutlined, PoweroffOutlined } from '@ant-design/icons';
+import { useNavigate, Link} from "react-router-dom";
 
 function LoginForm1({Login, error}) {
 
@@ -87,10 +92,19 @@ function LoginForm1({Login, error}) {
           span: 6,
         }}>
 
-        <Button type="primary" htmlType="submit">
+        {/* <Button type="primary" htmlType="submit">
           Submit
-        </Button>
-     
+        </Button> */}
+        <Button type={'primary'}>
+            <Link to={{
+              // pathname: '/Content1',
+              // search: `?id=${record.id}`,
+              pathname: '/HomeMusic',
+
+            }} >
+              <EditOutlined />
+            </Link>
+          </Button>
       </Form.Item>
     
     </Form>

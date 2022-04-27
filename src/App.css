@@ -471,3 +471,48 @@ responsive
     display: none;
   }
 }
+
+.dashboard{
+  background-color: skyblue;
+  height: 100vh; 
+  text-align:center;
+}
+.welcome{
+  font-size: xx-large;
+  
+}
+
+
+
+/* ////appp */
+.player-music {
+  background-color: #0F172A !important;
+  height: 6rem;
+}
+.rhap_time, .rhap_current-time {
+  color: white !important;
+}
+
+::selection {
+  background-color: transparent;
+  color: turquoise;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}

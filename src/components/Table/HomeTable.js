@@ -21,26 +21,19 @@ function HomeTable() {
   return (
     <Layout className='mainLayout'>
      <Header>
-    <TableHeader/>
+      <TableHeader/>
     </Header> 
-    <Content>Content
-    {/* <div className="site-card-border-less-wrapper"> */}
+      <Content>
+      <div className="site-card-border-less-wrapper">
+      
+        <Card style={{ width:'100%' }} >
     
-    <Card style={{ width:'100%' }} >
-   
-      <TableDetail/>
-      {/* <TableDetail_2/> */}
-   {/* <TestEdit/> */}
-   <Router>
-  
-      <Routes>
-
-        <Route path="/content1" element={<Content1/>} >  
-        </Route>
-      </Routes>
-      </Router>
-    </Card>
-    {/* </div> */}
+          <TableDetail/>
+        {/* <TableDetail_2/> */}
+        {/* <TestEdit/> */}
+    
+        </Card>
+      </div>
     </Content>
   </Layout>
  

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import HomeTableModule from './HomeTableModule.css';
 import { Table, Modal } from 'antd';
 import { Upload, message, Button, Tooltip } from 'antd';
@@ -7,13 +7,20 @@ import { SearchOutlined, ReloadOutlined, PoweroffOutlined } from '@ant-design/ic
 import { useNavigate } from "react-router-dom";
 import { Input } from 'antd';
 
-import { BrowserRouter, Routes, Route, Link, Router} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, Router } from "react-router-dom";
 import Content1 from '../pages/Content1';
 
 function TableDetail() {
 
   const [isEditing, setIsEditing] = useState(false);
   const [editList, setEditList] = useState(null);
+  // data.stt=data.length+1;
+
+  const [count, setCount] = useState(1);
+  const increment = useCallback(() => setCount(count + 1), []);
+  const reset = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
 
   const [data, setData] = useState([
     {
@@ -28,7 +35,7 @@ function TableDetail() {
     },
     {
       id: 2,
-      stt: 2,
+      stt: [count + 1],
       key: '2',
       name: 'Nguyễn Văn B',
       dateofbirth: 28,
@@ -40,7 +47,7 @@ function TableDetail() {
     {
       id: 3,
       key: '3',
-      stt: 3,
+      stt: [count + 1],
       name: 'Nguyễn Văn C',
       dateofbirth: 24,
       phone: '0988026782',
@@ -77,10 +84,11 @@ function TableDetail() {
 
 
   const navigate = useNavigate();
-  const handleClick=() => {
-    navigate({pathname: '/Content1'});
-  };
+  // const handleClick=() => {
+  //   navigate({pathname: '/Content1'});
+  // };
 
+  
 
   const columns = [
     {
@@ -123,14 +131,26 @@ function TableDetail() {
     {
       title: 'Action',
       key: 'action',
-   
-      render: (record) => {
-       
-        return <>
 
-       {/* <button onClick={() => navigate("/Content1")} ><EditOutlined/> </button>  */}
-       <button onClick={handleClick} ><EditOutlined/> </button> 
-{/* ************************************************* */}
+      render: (record) => {
+        return <>
+          {/* <button onClick={() => navigate("/Content1")} ><EditOutlined/> </button>  */}
+          {/* <button onClick={() => navigate({
+            pathname: '/Content1',
+            search: `test`,
+          })} record={record} ><EditOutlined />
+          </button> */}
+          <Button type={'primary'}>
+            <Link record={record} to={{
+              pathname: '/Content1',
+              search: `?id=${record.id}`,
+
+            }} >
+              <EditOutlined />
+            </Link>
+          </Button>
+
+          {/* ************************************************* */}
           <EditOutlined onClick={() => {
             editHandle(record);
           }} style={{ marginRight: 30 }} />
@@ -157,7 +177,7 @@ function TableDetail() {
       title: "Are you sure? Do you want to delete this item? ",
       onOk: () => {
         setData((pre) => {
-       return pre.filter((x) => x.id !== record.id);
+          return pre.filter((x) => x.id !== record.id);
 
         });
       },
@@ -193,26 +213,13 @@ function TableDetail() {
   const AddRow = () => {
     const randomNumber = Math.ceil(Math.random() * 1000);
 
-    // const newData = [];
-    // for (let i = 6; i < 7; i++) {
-    //   data.push({
-    //     key: 'random',
-    //     id: i,
-    //     stt: i ,
-    //     name: '',
-    //     dateofbirth: 28,
-    //     phone: '0973669063',
-    //     position: [],
-    //     rank: '',
-    //     tags: [''],
-    //   });
-    // }
+
     const newData = {
 
       key: 'random',
       id: randomNumber,
       name: '',
-      dateofbirth:'',
+      dateofbirth: '',
       phone: '',
       position: [],
       rank: '',
@@ -226,7 +233,7 @@ function TableDetail() {
 
   return (
     <div>
- {/* Modal when button editable */}
+      {/* Modal when button editable */}
       <Modal
         title='edit'
         visible={isEditing}
@@ -302,6 +309,9 @@ function TableDetail() {
         </div>
       </div>
       <Table columns={columns} dataSource={data} />
+
+
+
     </div>
 
   )
