@@ -95,7 +95,7 @@ function LoginForm1({Login, error}) {
         {/* <Button type="primary" htmlType="submit">
           Submit
         </Button> */}
-        <Button type={'primary'}>
+        <Button type={'primary'} onClick={Login}> 
             <Link to={{
               // pathname: '/Content1',
               // search: `?id=${record.id}`,
